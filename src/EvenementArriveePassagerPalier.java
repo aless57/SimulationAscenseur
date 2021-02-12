@@ -27,11 +27,7 @@ public class EvenementArriveePassagerPalier extends Evenement {
 		//notYetImplemented();
 		c.changerIntention(p.sens());
 		echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
-		//modifier pour le nombre d'étage
-		echeancier.ajouter(new EvenementPassageCabinePalier(date+ tempsPourBougerLaCabineDUnEtage,p.étageDestination()));
-		
 		char fmp = c.faireMonterPassager(p);
-		// Faudrait aussi ajouter le premier PCP...
 		if (fmp == 'O') {
 		    assert true;
 		} else {
@@ -42,12 +38,8 @@ public class EvenementArriveePassagerPalier extends Evenement {
 	    };
 	} else {
 	    étage.ajouter(p);
-	    if (p.étageDépart().numéro()<c.étage.numéro()){
-		c.changerIntention('v');
-	    }else if (p.étageDépart().numéro()>c.étage.numéro()){
-		c.changerIntention('^');
-	    }
-	};
+		c.changerIntention(p.sens());
+	}
 	
 	date += étage.arrivéeSuivante();
 	echeancier.ajouter(this);
