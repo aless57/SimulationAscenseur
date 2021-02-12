@@ -38,7 +38,13 @@ public class EvenementArriveePassagerPalier extends Evenement {
 	    };
 	} else {
 	    étage.ajouter(p);
-		c.changerIntention(p.sens());
+	    char sens;
+	    if (p.numéroDepart() < c.étage.numéro()){
+	    	sens = 'v';
+		}else{
+	    	sens = '^';
+		}
+		c.changerIntention(sens);
 	}
 	
 	date += étage.arrivéeSuivante();
