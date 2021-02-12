@@ -16,7 +16,12 @@ public class EvenementFermeturePorteCabine extends Evenement {
 
     public void traiter(Immeuble immeuble, Echeancier echeancier) {
         Cabine cabine = immeuble.cabine;
-        Etage e = immeuble.étage(cabine.étage.numéro()+1);
+        Etage e;
+        if (cabine.intention() == 'v'){
+            e = immeuble.étage(cabine.étage.numéro()-1);
+        }else{
+            e = immeuble.étage(cabine.étage.numéro()+1);
+        }
         echeancier.ajouter(new EvenementPassageCabinePalier(date + tempsPourBougerLaCabineDUnEtage, e));
         cabine.porteOuverte = false;
         //notYetImplemented();

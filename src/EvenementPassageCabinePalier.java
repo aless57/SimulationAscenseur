@@ -20,7 +20,6 @@ public class EvenementPassageCabinePalier extends Evenement {
 	Cabine cabine = immeuble.cabine;
 	cabine.étage = étage;
 	if (immeuble.cabine.passagersVeulentDescendre()){
-		cabine.changerIntention('-');
 		echeancier.ajouter(new EvenementOuverturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
 	}else{
 		Etage e = immeuble.étage(this.étage.numéro()+1);
