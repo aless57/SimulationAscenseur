@@ -38,14 +38,14 @@ public class EvenementArriveePassagerPalier extends Evenement {
 	    };
 	} else {
 	    étage.ajouter(p);
-	    char sens;
 	    if (p.numéroDepart() < c.étage.numéro()){
-	    	sens = 'v';
+			c.changerIntention('v');
 		}else{
-	    	sens = '^';
+			c.changerIntention('^');
 		}
-		c.changerIntention(sens);
+
 	    echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
+	    echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(),p));
 	}
 	
 	date += étage.arrivéeSuivante();
