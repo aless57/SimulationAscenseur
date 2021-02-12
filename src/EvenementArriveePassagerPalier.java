@@ -45,6 +45,7 @@ public class EvenementArriveePassagerPalier extends Evenement {
 	    	sens = '^';
 		}
 		c.changerIntention(sens);
+	    echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
 	}
 	
 	date += étage.arrivéeSuivante();
