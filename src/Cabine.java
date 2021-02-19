@@ -27,6 +27,16 @@ public class Cabine extends Global {
     	return tableauPassager[0];
 	}
 
+	public boolean cabineVide(){
+    	boolean test = false;
+    	for (int i=0; i<tableauPassager.length; i++){
+    		if (tableauPassager[i] != null){
+    			test = true;
+			}
+		}
+    	return test;
+	}
+
     public boolean cabineRemplie(){
     	boolean test = true;
     	for (int i=0; i<tableauPassager.length; i++){
