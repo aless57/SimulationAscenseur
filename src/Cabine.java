@@ -16,12 +16,26 @@ public class Cabine extends Global {
      */
 
     public Cabine(Etage e) {
-	assert e != null;
-	étage = e;
-	tableauPassager = new Passager[nombreDePlacesDansLaCabine];
-	porteOuverte = true;
-	intention = '-';
+		assert e != null;
+		étage = e;
+		tableauPassager = new Passager[nombreDePlacesDansLaCabine];
+		porteOuverte = true;
+		intention = '-';
     }
+
+    public Passager getTableauPassager(){
+    	return tableauPassager[0];
+	}
+
+    public boolean cabineRemplie(){
+    	boolean test = true;
+    	for (int i=0; i<tableauPassager.length; i++){
+    		if (tableauPassager[i] == null){
+    			test = false;
+			}
+		}
+    	return test;
+	}
 
     public void afficheDans(StringBuilder buffer) {
 	buffer.append("Contenu de la cabine: ");

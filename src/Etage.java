@@ -114,6 +114,12 @@ public class Etage extends Global {
 	return false;
     }
 
+    public Passager faireEntrerPremierPassager(){
+    	Passager p = passagers.get(0);
+    	passagers.remove(0);
+    	return p;
+	}
+
     public boolean aDesPassagers(){
 	return (!passagers.isEmpty());
     }
