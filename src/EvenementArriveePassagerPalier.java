@@ -32,22 +32,23 @@ public class EvenementArriveePassagerPalier extends Evenement {
 			} else {
 				assert false : "else impossible";
 			}
-	    } else {
-		//notYetImplemented();
-	    };
-		} else if (c.étage == étage) {
-			étage.ajouter(p);
-			echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
-				}else{
-			étage.ajouter(p);
-			if (p.numéroDepart() < c.étage.numéro()) {
-				c.changerIntention('v');
-			} else {
-				c.changerIntention('^');
+	    }
+	} else if (c.étage == étage) {
+		étage.ajouter(p);
+		echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
+		}else if(c.porteOuverte) {
+				étage.ajouter(p);
+				if (p.numéroDepart() < c.étage.numéro()) {
+					c.changerIntention('v');
+				} else {
+					c.changerIntention('^');
+				}
+				echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
+				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
+			}else{
+				étage.ajouter(p);
+				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
 			}
-			echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
-			echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
-		}
 
 	
 	date += étage.arrivéeSuivante();
