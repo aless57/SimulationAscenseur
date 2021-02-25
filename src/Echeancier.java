@@ -80,5 +80,18 @@ public class Echeancier extends Global {
 	    }
 	}	
     }
+    public void supprimerPAP(Passager p){
+		int index = 0;
+		while ( index < listeEvenements.size() ) {
+			Evenement e = listeEvenements.get(index);
+			if(e instanceof EvenementPietonArrivePalier){
+				if (((EvenementPietonArrivePalier) e).getPassager() == p){
+					listeEvenements.remove(index);
+				}
+			} else {
+				index++;
+			}
+		}
+	}
 
 }

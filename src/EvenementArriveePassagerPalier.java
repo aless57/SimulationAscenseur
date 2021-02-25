@@ -33,14 +33,12 @@ public class EvenementArriveePassagerPalier extends Evenement {
 				assert false : "else impossible";
 			}
 	    } else {
-		notYetImplemented();
+		//notYetImplemented();
 	    };
-	} else if (c.étage == étage) {
-		étage.ajouter(p);
-		echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
-		}else if (!c.cabineVide()) {
-			//a finir ici
-		} else{
+		} else if (c.étage == étage) {
+			étage.ajouter(p);
+			echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
+				}else{
 			étage.ajouter(p);
 			if (p.numéroDepart() < c.étage.numéro()) {
 				c.changerIntention('v');
@@ -55,7 +53,7 @@ public class EvenementArriveePassagerPalier extends Evenement {
 	date += étage.arrivéeSuivante();
 	echeancier.ajouter(this);
 	
-	assert c.intention() != '-' : "intention impossible";
+	//assert c.intention() != '-' : "intention impossible";
     }
 
 }

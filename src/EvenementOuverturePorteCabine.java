@@ -16,12 +16,13 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		Etage étage = cabine.étage;
 		cabine.changerIntention('-');
 		cabine.porteOuverte = true;
-		cabine.faireDescendrePassagers(immeuble,date);
+		cabine.faireDescendrePassagers(immeuble,date + tempsPourEntrerOuSortirDeLaCabine);
 		//verifier nb personne dans la cabine
 		while (!cabine.cabineRemplie() && étage.aDesPassagers()){
 			Passager p = étage.faireEntrerPremierPassager();
 			cabine.changerIntention(p.sens());
 			char fmp = cabine.faireMonterPassager(p);
+			echeancier.supprimerPAP(p);
 			echeancier.ajouter(new EvenementFermeturePorteCabine(date + Global.tempsPourOuvrirOuFermerLesPortes));
 		}
     }
