@@ -132,6 +132,28 @@ public class Etage extends Global {
     	return nbPersonneQuiEntrent;
 	}
 
+	public int entrerPassagerCabine(Cabine cabine, Echeancier echeancier){
+		int res = 0;
+		int i = 0;
+		char n;
+		while(i < this.passagers.size()) {
+			Passager p = passagers.get(i);
+			cabine.changerIntention(p.sens());
+			n = cabine.faireMonterPassager(p);
+			if(n == 'O') {
+				echeancier.supprimerPAP(p);
+				passagers.remove(i);
+				res++;
+			} else if(n == 'P'){
+				return res;
+			} else {
+				assert (n=='I');
+				i++;
+			}
+		}
+		return res;
+	}
+
     public boolean aDesPassagers(){
 	return (!passagers.isEmpty());
     }
