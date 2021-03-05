@@ -14,22 +14,30 @@ public class EvenementOuverturePorteCabine extends Evenement {
     public void traiter(Immeuble immeuble, Echeancier echeancier) {
 		Cabine cabine = immeuble.cabine;
 		Etage étage = cabine.étage;
-		cabine.changerIntention('-');
+		//REGARDER LE PAP POUR CHANGER L INTENTION PAR RAPPORT A L'ORDRE
+		if (!cabine.étage.aDesPassagers() && !cabine.passagersVeulentDescendre()){
+			if (immeuble.passagerAuDessus(cabine.étage)){
+				cabine.changerIntention('^');
+			}else if(immeuble.passagerEnDessous(cabine.étage)){
+				cabine.changerIntention('v');
+			}else{
+				cabine.changerIntention('-');
+			}
+		}
 		cabine.porteOuverte = true;
-		cabine.faireDescendrePassagers(immeuble,date );
-		//faire descendre1par1avecconditionEtIncrémenteur
-		int nbPersonneQuiEntre=0;
+		int nbPersonneQuiDescendent = cabine.faireDescendrePassagers(immeuble,date );
+		int nbPersonneQuiEntrent=0;
 		boolean ajoutEventFermeture = false;
 		while (!cabine.cabineRemplie() && étage.aDesPassagers()){
 			Passager p = étage.faireEntrerPremierPassager();
-			nbPersonneQuiEntre++;
+			nbPersonneQuiEntrent++;
 			ajoutEventFermeture = true;
 			cabine.changerIntention(p.sens());
 			char fmp = cabine.faireMonterPassager(p);
 			echeancier.supprimerPAP(p);
 		}
 		if(ajoutEventFermeture){
-			echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes + tempsPourEntrerOuSortirDeLaCabine *(nbPersonneQuiEntre)));
+			echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes + tempsPourEntrerOuSortirDeLaCabine *(nbPersonneQuiEntrent+nbPersonneQuiDescendent)));
 		}
     }
 
