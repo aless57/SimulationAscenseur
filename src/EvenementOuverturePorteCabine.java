@@ -14,7 +14,7 @@ public class EvenementOuverturePorteCabine extends Evenement {
     public void traiter(Immeuble immeuble, Echeancier echeancier) {
 		Cabine cabine = immeuble.cabine;
 		Etage étage = cabine.étage;
-		cabine.changerIntention('-');
+		//cabine.changerIntention('-');
 		cabine.porteOuverte = true;
 		cabine.faireDescendrePassagers(immeuble,date );
 		//faire descendre1par1avecconditionEtIncrémenteur
