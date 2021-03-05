@@ -120,6 +120,18 @@ public class Etage extends Global {
     	return p;
 	}
 
+	public int faireEntrerPassagers(Cabine cabine, Echeancier echeancier){
+    	int nbPersonneQuiEntrent = 0;
+    	while(!cabine.cabineRemplie() && this.aDesPassagers()){
+    		Passager p = faireEntrerPremierPassager();
+    		nbPersonneQuiEntrent++;
+    		cabine.changerIntention(p.sens());
+    		char fmp = cabine.faireMonterPassager(p);
+    		echeancier.supprimerPAP(p);
+		}
+    	return nbPersonneQuiEntrent;
+	}
+
     public boolean aDesPassagers(){
 	return (!passagers.isEmpty());
     }

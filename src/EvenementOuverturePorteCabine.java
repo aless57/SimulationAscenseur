@@ -29,15 +29,7 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		}
 		cabine.porteOuverte = true;
 		int nbPersonneQuiDescendent = cabine.faireDescendrePassagers(immeuble,date );
-		int nbPersonneQuiEntrent=0;
-		while (!cabine.cabineRemplie() && étage.aDesPassagers()){
-			Passager p = étage.faireEntrerPremierPassager();
-			nbPersonneQuiEntrent++;
-			ajoutEventFermeture = true;
-			cabine.changerIntention(p.sens());
-			char fmp = cabine.faireMonterPassager(p);
-			echeancier.supprimerPAP(p);
-		}
+		int nbPersonneQuiEntrent=étage.faireEntrerPassagers(cabine,echeancier);
 		if(ajoutEventFermeture){
 			echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes + tempsPourEntrerOuSortirDeLaCabine *(nbPersonneQuiEntrent+nbPersonneQuiDescendent)));
 		}
