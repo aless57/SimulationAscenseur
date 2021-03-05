@@ -30,6 +30,9 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		cabine.porteOuverte = true;
 		int nbPersonneQuiDescendent = cabine.faireDescendrePassagers(immeuble,date );
 		int nbPersonneQuiEntrent=étage.faireEntrerPassagers(cabine,echeancier);
+		if (nbPersonneQuiEntrent > 0){
+			ajoutEventFermeture = true;
+		}
 		if(ajoutEventFermeture){
 			echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes + tempsPourEntrerOuSortirDeLaCabine *(nbPersonneQuiEntrent+nbPersonneQuiDescendent)));
 		}
