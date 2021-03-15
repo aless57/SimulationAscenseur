@@ -33,6 +33,7 @@ public class EvenementOuverturePorteCabine extends Evenement {
 			 nbPersonneQuiDescendent= cabine.faireDescendrePassagers(immeuble,date );
 			 if (cabine.cabineVide()){
 			 	cabine.changerIntention(cabine.getPassager(0).sens());
+			 	ajoutEventFermeture = true;
 			 }
 		}
 		int nbPersonneQuiEntrent = 0;
