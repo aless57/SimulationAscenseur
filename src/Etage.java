@@ -114,24 +114,6 @@ public class Etage extends Global {
 	return false;
     }
 
-    public Passager faireEntrerPremierPassager(){
-    	Passager p = passagers.get(0);
-    	passagers.remove(0);
-    	return p;
-	}
-
-	public int faireEntrerPassagers(Cabine cabine, Echeancier echeancier){
-    	int nbPersonneQuiEntrent = 0;
-    	while(!cabine.cabineRemplie() && this.aDesPassagers()){
-    		Passager p = faireEntrerPremierPassager();
-    		nbPersonneQuiEntrent++;
-    		cabine.changerIntention(p.sens());
-    		char fmp = cabine.faireMonterPassager(p);
-    		echeancier.supprimerPAP(p);
-		}
-    	return nbPersonneQuiEntrent;
-	}
-
 	public int entrerPassagerCabine(Cabine cabine, Echeancier echeancier){
 		int res = 0;
 		int i = 0;
@@ -151,6 +133,20 @@ public class Etage extends Global {
 				i++;
 			}
 		}
+//		i=0;
+//		int test = 20;
+//		Passager pPrio = cabine.getPassager(0);
+//		if(!modeParfait){
+//			while (i < cabine.getTableauPassager().length){
+//				Passager p = cabine.getPassager(i);
+//				if(cabine.étage.numéro - Math.abs(p.numéroDestination())<test){
+//					test = cabine.étage.numéro - Math.abs(p.numéroDestination());
+//					pPrio = p;
+//				}
+//				i++;
+//			}
+//			cabine.changerIntention(pPrio.sens());
+//		}
 		return res;
 	}
 

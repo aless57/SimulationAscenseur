@@ -23,8 +23,12 @@ public class Cabine extends Global {
 		intention = '-';
     }
 
-    public Passager getTableauPassager(){
-    	return tableauPassager[0];
+    public Passager[] getTableauPassager(){
+    	return tableauPassager;
+	}
+
+	public Passager getPassager(int i){
+		return tableauPassager[i];
 	}
 
 	public boolean cabineVide(){
