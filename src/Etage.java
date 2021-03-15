@@ -118,6 +118,10 @@ public class Etage extends Global {
 		int res = 0;
 		int i = 0;
 		char n;
+		boolean infernal = false;
+		if(this.passagers.size() > 1) {
+			infernal = true;
+		}
 		while(i < this.passagers.size()) {
 			Passager p = passagers.get(i);
 			cabine.changerIntention(p.sens());
@@ -133,20 +137,23 @@ public class Etage extends Global {
 				i++;
 			}
 		}
-//		i=0;
-//		int test = 20;
-//		Passager pPrio = cabine.getPassager(0);
-//		if(!modeParfait){
-//			while (i < cabine.getTableauPassager().length){
-//				Passager p = cabine.getPassager(i);
-//				if(cabine.étage.numéro - Math.abs(p.numéroDestination())<test){
-//					test = cabine.étage.numéro - Math.abs(p.numéroDestination());
-//					pPrio = p;
-//				}
-//				i++;
-//			}
-//			cabine.changerIntention(pPrio.sens());
-//		}
+		i=0;
+		int test = 20;
+		Passager pPrio = cabine.getPassager(0);
+		if (infernal){
+			if(!modeParfait){
+				while (i < cabine.getTableauPassager().length-1){
+					Passager p = cabine.getPassager(i);
+					if(Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro))<test){
+						test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
+						pPrio = p;
+					}
+					i++;
+				}
+				cabine.changerIntention(pPrio.sens());
+			}
+		}
+
 		return res;
 	}
 
