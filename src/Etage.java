@@ -133,15 +133,17 @@ public class Etage extends Global {
 				passagers.remove(i);
 				res++;
 			} else if (m == 'P') {
-				while (i < cabine.getTableauPassager().length-1){
-					p = cabine.getPassager(i);
-					if(Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro))<=test){
-						test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
-						pPrio = p;
+				if(!modeParfait) {
+					while (i < cabine.getTableauPassager().length - 1) {
+						p = cabine.getPassager(i);
+						if (Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro)) <= test) {
+							test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
+							pPrio = p;
+						}
+						i++;
 					}
-					i++;
+					cabine.changerIntention(pPrio.sens());
 				}
-				cabine.changerIntention(pPrio.sens());
 				return res;
 			} else {
 				assert (m == 'I');
