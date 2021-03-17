@@ -116,6 +116,9 @@ public class Etage extends Global {
 
 	public int entrerPassagerCabine(Cabine cabine, Echeancier echeancier){
 		boolean infernal = false;
+		int test = 20;
+		Passager pPrio = cabine.getPassager(0);
+		System.out.println("b");
     	if(this.passagers.size() > 1) {
 			infernal = true;
 		}
@@ -131,6 +134,15 @@ public class Etage extends Global {
 				passagers.remove(i);
 				res++;
 			} else if (m == 'P') {
+				while (i < cabine.getTableauPassager().length-1){
+					p = cabine.getPassager(i);
+					if(Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro))<test){
+						test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
+						pPrio = p;
+					}
+					i++;
+				}
+				cabine.changerIntention(pPrio.sens());
 				return res;
 			} else {
 				assert (m == 'I');
@@ -138,8 +150,6 @@ public class Etage extends Global {
 			}
 		}
 		i=0;
-		int test = 20;
-		Passager pPrio = cabine.getPassager(0);
 		if (infernal){
 			if(!modeParfait){
 				while (i < cabine.getTableauPassager().length-1){
