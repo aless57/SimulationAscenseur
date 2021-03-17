@@ -133,7 +133,6 @@ public class Etage extends Global {
 			} else if(n == 'P'){
 				return res;
 			} else {
-				assert (n=='I');
 				i++;
 			}
 		}
