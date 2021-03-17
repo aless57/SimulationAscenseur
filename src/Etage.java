@@ -118,7 +118,6 @@ public class Etage extends Global {
 		boolean infernal = false;
 		int test = 20;
 		Passager pPrio = cabine.getPassager(0);
-		System.out.println("b");
     	if(this.passagers.size() > 1) {
 			infernal = true;
 		}
