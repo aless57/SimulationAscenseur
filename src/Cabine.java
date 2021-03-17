@@ -28,7 +28,11 @@ public class Cabine extends Global {
 	}
 
 	public Passager getPassager(int i){
-		return tableauPassager[i];
+		Passager p = tableauPassager[i];
+		while(p==null){
+			p = tableauPassager[i++];
+		}
+		return p;
 	}
 
 	public boolean cabineVide(){
