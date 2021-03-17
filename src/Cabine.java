@@ -31,6 +31,7 @@ public class Cabine extends Global {
 		Passager p = tableauPassager[i];
 		while (p==null && i<tableauPassager.length){
 			p=tableauPassager[i];
+			i++;
 		}
 		return p;
 	}
