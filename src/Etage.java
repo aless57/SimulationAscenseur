@@ -115,44 +115,67 @@ public class Etage extends Global {
     }
 
 	public int entrerPassagerCabine(Cabine cabine, Echeancier echeancier){
-		int res = 0;
-		int i = 0;
-		char n;
-		boolean infernal = false;
-		if(this.passagers.size() > 1) {
-			infernal = true;
-		}
-		while(i < this.passagers.size()) {
-			Passager p = passagers.get(i);
-			cabine.changerIntention(p.sens());
-			n = cabine.faireMonterPassager(p);
-			if(n == 'O') {
-				echeancier.supprimerPAP(p);
-				passagers.remove(i);
-				res++;
-			} else if(n == 'P'){
-				return res;
-			} else {
-				assert (n=='I');
-				i++;
-			}
-		}
-		i=0;
-		int test = 20;
-		Passager pPrio = cabine.getPassager(0);
-		if (infernal){
-			if(!modeParfait){
-				while (i < cabine.getTableauPassager().length-1){
-					Passager p = cabine.getPassager(i);
-					if(Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro))<test){
-						test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
-						pPrio = p;
+    	int res=0;
+    	if(modeParfait){
+    		char n;
+    		int i=0;
+			while((cabine.intention()=='v' && aDesPassagersQuiDescendent() || (cabine.intention()=='^' && aDesPassagersQuiMontent()))){
+				if ((passagers.get(i).sens() =='v' && cabine.intention()=='v') || (passagers.get(i).sens())=='^'&&cabine.intention()=='^'){
+					Passager p = passagers.get(i);
+					n=cabine.faireMonterPassager(p);
+					if (n == 'O'){
+						echeancier.supprimerPAP(p);
+						passagers.remove(i);
+						res++;
+					} else if(n == 'P'){
+						return res;
+					} else {
+						assert (n=='I');
+						i++;
 					}
+				}
+			}
+
+		}else{
+			int i = 0;
+			char n;
+			boolean infernal = false;
+			if(this.passagers.size() > 1) {
+				infernal = true;
+			}
+			while(i < this.passagers.size()) {
+				Passager p = passagers.get(i);
+				cabine.changerIntention(p.sens());
+				n = cabine.faireMonterPassager(p);
+				if(n == 'O') {
+					echeancier.supprimerPAP(p);
+					passagers.remove(i);
+					res++;
+				} else if(n == 'P'){
+					return res;
+				} else {
+					assert (n=='I');
 					i++;
 				}
-				cabine.changerIntention(pPrio.sens());
+			}
+			i=0;
+			int test = 20;
+			Passager pPrio = cabine.getPassager(0);
+			if (infernal){
+				if(!modeParfait){
+					while (i < cabine.getTableauPassager().length-1){
+						Passager p = cabine.getPassager(i);
+						if(Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro))<test){
+							test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
+							pPrio = p;
+						}
+						i++;
+					}
+					cabine.changerIntention(pPrio.sens());
+				}
 			}
 		}
+
 
 		return res;
 	}
