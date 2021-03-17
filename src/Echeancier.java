@@ -80,6 +80,21 @@ public class Echeancier extends Global {
 	    }
 	}	
     }
+
+    public boolean rechercheFPC(){
+		int index = 0;
+		boolean test = false;
+		while ( index < listeEvenements.size() ) {
+			Evenement e = listeEvenements.get(index);
+			if(e instanceof EvenementFermeturePorteCabine){
+				test = true;
+
+			}
+			index++;
+		}
+		return test;
+	}
+
     public void supprimerPAP(Passager p){
 		int index = 0;
 		while ( index < listeEvenements.size() ) {

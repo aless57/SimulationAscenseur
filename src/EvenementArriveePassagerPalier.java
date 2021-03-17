@@ -44,7 +44,9 @@ public class EvenementArriveePassagerPalier extends Evenement {
 					c.changerIntention('^');
 				}
 				if (!c.cabineVide()){
-					echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
+					if(!echeancier.rechercheFPC()) {
+						echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
+					}
 				}
 				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
 			}else{
