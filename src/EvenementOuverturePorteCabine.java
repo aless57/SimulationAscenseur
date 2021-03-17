@@ -16,10 +16,10 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		Etage étage = cabine.étage;
 		//REGARDER LE PAP POUR CHANGER L INTENTION PAR RAPPORT A L'ORDRE
 		boolean ajoutEventFermeture = false;
-		if (immeuble.passagerAuDessus(cabine.étage)){
+		if (immeuble.passagerAuDessus(cabine.étage) && !étage.aDesPassagers()){
 			cabine.changerIntention('^');
 			ajoutEventFermeture = true;
-		}else if(immeuble.passagerEnDessous(cabine.étage)){
+		}else if(immeuble.passagerEnDessous(cabine.étage) && !étage.aDesPassagers()){
 			cabine.changerIntention('v');
 			ajoutEventFermeture = true;
 		}
