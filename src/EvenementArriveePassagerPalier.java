@@ -32,7 +32,10 @@ public class EvenementArriveePassagerPalier extends Evenement {
 			} else {
 				assert false : "else impossible";
 			}
-	    }
+	    }else {
+			étage.ajouter(p);
+			echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
+		}
 	} else if (c.étage == étage) {
 		étage.ajouter(p);
 		echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
