@@ -24,7 +24,6 @@ public class EvenementFermeturePorteCabine extends Evenement {
         }
         echeancier.ajouter(new EvenementPassageCabinePalier(date + tempsPourBougerLaCabineDUnEtage, e));
         cabine.porteOuverte = false;
-        //notYetImplemented();
     }
 
 

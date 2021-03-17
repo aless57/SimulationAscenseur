@@ -38,10 +38,12 @@ public class EvenementArriveePassagerPalier extends Evenement {
 		echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
 		}else if(c.porteOuverte) {
 				étage.ajouter(p);
-				if (p.numéroDepart() < c.étage.numéro()) {
-					c.changerIntention('v');
-				} else {
-					c.changerIntention('^');
+				if (c.cabineVide()){
+					if (p.numéroDepart() < c.étage.numéro()) {
+						c.changerIntention('v');
+					} else {
+						c.changerIntention('^');
+					}
 				}
 				if (!c.cabineVide()){
 					if(!echeancier.rechercheFPC()) {
