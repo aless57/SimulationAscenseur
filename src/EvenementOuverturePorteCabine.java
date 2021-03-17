@@ -45,14 +45,16 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		if (nbPersonneQuiEntrent > 0){
 			ajoutEventFermeture = true;
 		}
+		if (!immeuble.passagerEnDessous(cabine.étage) && (!immeuble.passagerAuDessus(cabine.étage)) && (nbPersonneQuiEntrent==0) && (!cabine.cabineVide())){
+			cabine.changerIntention('-');
+			ajoutEventFermeture = false;
+		}
+
 		if(ajoutEventFermeture){
 			echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes + tempsPourEntrerOuSortirDeLaCabine *(nbPersonneQuiEntrent+nbPersonneQuiDescendent)));
 		}
 
-		if (!immeuble.passagerEnDessous(cabine.étage) && (!immeuble.passagerAuDessus(cabine.étage)) && (nbPersonneQuiEntrent==0)){
-			cabine.changerIntention('-');
-			ajoutEventFermeture = false;
-		}
+
     }
 
 }
