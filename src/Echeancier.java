@@ -88,6 +88,8 @@ public class Echeancier extends Global {
 				if (((EvenementPietonArrivePalier) e).getPassager() == p){
 					listeEvenements.remove(index);
 					return;
+				}else{
+					index++;
 				}
 			} else {
 				index++;

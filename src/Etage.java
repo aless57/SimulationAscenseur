@@ -115,26 +115,30 @@ public class Etage extends Global {
     }
 
 	public int entrerPassagerCabine(Cabine cabine, Echeancier echeancier){
-    	int res=0;
-		int i = 0;
-		char n;
 		boolean infernal = false;
-		if(this.passagers.size() > 1) {
+    	if(this.passagers.size() > 1) {
 			infernal = true;
 		}
-		while(i < this.passagers.size()) {
+		int res = 0;
+		int i = 0;
+		char m = 'O';
+
+		while (i < this.passagers.size()) {
 			Passager p = passagers.get(i);
-			cabine.changerIntention(p.sens());
-			n = cabine.faireMonterPassager(p);
-			if(n == 'O') {
+			m = cabine.faireMonterPassager(p);
+			if (m == 'O') {
 				echeancier.supprimerPAP(p);
 				passagers.remove(i);
 				res++;
-			} else if(n == 'P'){
+			} else if (m == 'P') {
 				return res;
 			} else {
+				assert (m == 'I');
 				i++;
+				System.out.println("ici");
 			}
+			System.out.println("Numéro mec : " + p.dateDépart());
+			System.out.println(i);
 		}
 		i=0;
 		int test = 20;
@@ -158,5 +162,7 @@ public class Etage extends Global {
     public boolean aDesPassagers(){
 	return (!passagers.isEmpty());
     }
+
+    public int getNbPassager(){return passagers.size();}
 
 }

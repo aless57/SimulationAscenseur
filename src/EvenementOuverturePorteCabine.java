@@ -23,18 +23,19 @@ public class EvenementOuverturePorteCabine extends Evenement {
 			cabine.changerIntention('v');
 			ajoutEventFermeture = true;
 		}
-		if (!immeuble.passagerEnDessous(cabine.étage) && (!immeuble.passagerAuDessus(cabine.étage))){
-			cabine.changerIntention('-');
-			ajoutEventFermeture = false;
-		}
 		cabine.porteOuverte = true;
 		int nbPersonneQuiDescendent = 0;
 		if (cabine.getTableauPassager().length > 0){
 			 nbPersonneQuiDescendent= cabine.faireDescendrePassagers(immeuble,date );
-			 if (!modeParfait && cabine.cabineVide()){
+			 if (cabine.cabineVide()){
 			 	cabine.changerIntention(cabine.getPassager(0).sens());
 			 	ajoutEventFermeture = true;
 			 }
+		}
+		if (cabine.intention()=='v' && !cabine.cabineVide() && étage.aDesPassagersQuiMontent() && étage.getNbPassager()==1){
+			cabine.changerIntention('^');
+		}else if(cabine.intention() == '^' && !cabine.cabineVide() && étage.aDesPassagersQuiDescendent() && étage.getNbPassager()==1){
+			cabine.changerIntention('v');
 		}
 		int nbPersonneQuiEntrent = 0;
 		if (étage.aDesPassagers()){
@@ -48,6 +49,10 @@ public class EvenementOuverturePorteCabine extends Evenement {
 			echeancier.ajouter(new EvenementFermeturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes + tempsPourEntrerOuSortirDeLaCabine *(nbPersonneQuiEntrent+nbPersonneQuiDescendent)));
 		}
 
+		if (!immeuble.passagerEnDessous(cabine.étage) && (!immeuble.passagerAuDessus(cabine.étage)) && (nbPersonneQuiEntrent==0)){
+			cabine.changerIntention('-');
+			ajoutEventFermeture = false;
+		}
     }
 
 }
