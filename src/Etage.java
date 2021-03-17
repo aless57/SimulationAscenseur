@@ -135,10 +135,7 @@ public class Etage extends Global {
 			} else {
 				assert (m == 'I');
 				i++;
-				System.out.println("ici");
 			}
-			System.out.println("Numéro mec : " + p.dateDépart());
-			System.out.println(i);
 		}
 		i=0;
 		int test = 20;
