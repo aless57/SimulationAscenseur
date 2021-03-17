@@ -116,7 +116,7 @@ public class Etage extends Global {
 
 	public int entrerPassagerCabine(Cabine cabine, Echeancier echeancier){
     	int res=0;
-    	if(modeParfait || !cabine.cabineVide()){
+    	if(modeParfait || cabine.cabineVide()){
     		char n;
     		int i=0;
 			while((cabine.intention()=='v' && aDesPassagersQuiDescendent() || (cabine.intention()=='^' && aDesPassagersQuiMontent()))){
