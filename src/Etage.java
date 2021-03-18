@@ -118,7 +118,7 @@ public class Etage extends Global {
 		boolean infernal = false;
 		int test = 20;
 		Passager pPrio = cabine.getPassager(0);
-    	if(this.passagers.size() >= 1) {
+    	if(this.passagers.size() > 1) {
 			infernal = true;
 		}
 		int res = 0;
@@ -134,13 +134,16 @@ public class Etage extends Global {
 				res++;
 			} else if (m == 'P') {
 				if(!modeParfait) {
-					while (i < cabine.getTableauPassager().length - 1) {
+					while (i < cabine.getTableauPassager().length) {
 						p = cabine.getPassager(i);
-						if (Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro)) <= test) {
-							test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
-							pPrio = p;
+						if(p != null){
+							if (Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro)) <= test) {
+								test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
+								pPrio = p;
+							}
 						}
 						i++;
+						System.out.println(p.numéroDeCréation);
 					}
 					cabine.changerIntention(pPrio.sens());
 				}
@@ -153,11 +156,13 @@ public class Etage extends Global {
 		i=0;
 		if (infernal){
 			if(!modeParfait){
-				while (i < cabine.getTableauPassager().length-1){
+				while (i < cabine.getTableauPassager().length){
 					Passager p = cabine.getPassager(i);
-					if(Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro))<=test){
-						test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
-						pPrio = p;
+					if (p != null){
+						if(Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro))<=test){
+							test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
+							pPrio = p;
+						}
 					}
 					i++;
 				}
