@@ -14,7 +14,7 @@ public class EvenementOuverturePorteCabine extends Evenement {
     public void traiter(Immeuble immeuble, Echeancier echeancier) {
 		Cabine cabine = immeuble.cabine;
 		Etage étage = cabine.étage;
-		//REGARDER LE PAP POUR CHANGER L INTENTION PAR RAPPORT A L'ORDRE
+		//REGARDER LE PAP POUR CHANGER L INTENTION PAR RAPPORT A L'ORDREd
 		boolean ajoutEventFermeture = false;
 		if (immeuble.passagerAuDessus(cabine.étage) && !étage.aDesPassagers()){
 			cabine.changerIntention('^');
