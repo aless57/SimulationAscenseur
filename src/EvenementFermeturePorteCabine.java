@@ -17,7 +17,7 @@ public class EvenementFermeturePorteCabine extends Evenement {
     public void traiter(Immeuble immeuble, Echeancier echeancier) {
         Cabine cabine = immeuble.cabine;
         Etage e = immeuble.étage(cabine.étage.numéro());
-        if (cabine.étage.numéro() != 7 || cabine.étage.numéro() != -1){
+        if (cabine.étage.numéro() != 7 && cabine.étage.numéro() != -1){
             if (cabine.intention() == 'v'){
                 e = immeuble.étage(cabine.étage.numéro()-1);
             }else{
