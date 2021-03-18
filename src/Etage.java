@@ -143,7 +143,6 @@ public class Etage extends Global {
 							}
 						}
 						i++;
-						System.out.println(p.numéroDeCréation);
 					}
 					cabine.changerIntention(pPrio.sens());
 				}
