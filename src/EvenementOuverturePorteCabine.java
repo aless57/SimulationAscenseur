@@ -39,11 +39,15 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		}else if(cabine.intention() == '^' && !cabine.cabineVide() && étage.aDesPassagersQuiDescendent() && étage.getNbPassager()==1 && !immeuble.passagerAuDessus(étage)){
 			cabine.changerIntention('v');
 		}
-		if (étage.aDesPassagers() && modeParfait && !cabine.cabineVide()){
+		if (étage.aDesPassagers()  && !cabine.cabineVide()){
 			if(cabine.étage.numéro()==7){
 				cabine.changerIntention('v');
 			}else if(cabine.étage.numéro()==-1){
 				cabine.changerIntention('^');
+			}else if(cabine.intention()=='v' && !étage.aDesPassagersQuiDescendent() && !immeuble.passagerEnDessous(étage)){
+				cabine.changerIntention('^');
+			}else if(cabine.intention()=='^' && !étage.aDesPassagersQuiMontent() && !immeuble.passagerAuDessus(étage)){
+				cabine.changerIntention('v');
 			}
 		}
 		int nbPersonneQuiEntrent = 0;
