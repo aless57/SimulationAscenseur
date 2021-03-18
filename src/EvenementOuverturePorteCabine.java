@@ -17,9 +17,11 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		//REGARDER LE PAP POUR CHANGER L INTENTION PAR RAPPORT A L'ORDRE
 		boolean ajoutEventFermeture = false;
 		if (immeuble.passagerAuDessus(cabine.étage) && !étage.aDesPassagers()){
+			System.out.println(1);
 			cabine.changerIntention('^');
 			ajoutEventFermeture = true;
 		}else if(immeuble.passagerEnDessous(cabine.étage) && !étage.aDesPassagers()){
+			System.out.println(2);
 			cabine.changerIntention('v');
 			ajoutEventFermeture = true;
 		}
@@ -28,13 +30,18 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		if (cabine.getTableauPassager().length > 0){
 			 nbPersonneQuiDescendent= cabine.faireDescendrePassagers(immeuble,date );
 			 if (cabine.cabineVide()){
-			 	cabine.changerIntention(cabine.getPassager(0).sens());
+				 System.out.println(3);
+				 if (((cabine.intention()=='^' && !immeuble.passagerAuDessus(étage)) || (cabine.intention()=='v' && !immeuble.passagerEnDessous(étage)))){
+					 cabine.changerIntention(cabine.getPassager(0).sens());
+				 }
 			 	ajoutEventFermeture = true;
 			 }
 		}
 		if (cabine.intention()=='v' && !cabine.cabineVide() && étage.aDesPassagersQuiMontent() && étage.getNbPassager()==1){
+			System.out.println(4);
 			cabine.changerIntention('^');
 		}else if(cabine.intention() == '^' && !cabine.cabineVide() && étage.aDesPassagersQuiDescendent() && étage.getNbPassager()==1){
+			System.out.println(5);
 			cabine.changerIntention('v');
 		}
 		int nbPersonneQuiEntrent = 0;
@@ -46,6 +53,7 @@ public class EvenementOuverturePorteCabine extends Evenement {
 			ajoutEventFermeture = true;
 		}
 		if (!immeuble.passagerEnDessous(cabine.étage) && (!immeuble.passagerAuDessus(cabine.étage)) && (nbPersonneQuiEntrent==0) && (!cabine.cabineVide())){
+			System.out.println(6);
 			cabine.changerIntention('-');
 			ajoutEventFermeture = false;
 		}

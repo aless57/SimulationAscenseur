@@ -19,6 +19,7 @@ public class EvenementPassageCabinePalier extends Evenement {
     public void traiter(Immeuble immeuble, Echeancier echeancier) {
 	Cabine cabine = immeuble.cabine;
 	cabine.étage = étage;
+
 	if (immeuble.cabine.passagersVeulentDescendre()){
 		echeancier.ajouter(new EvenementOuverturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
 	}else{
@@ -29,14 +30,19 @@ public class EvenementPassageCabinePalier extends Evenement {
 			} else if(étage.aDesPassagersQuiDescendent() && cabine.intention() == 'v') {
 			echeancier.ajouter(new EvenementOuverturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
 				}else{
-					Etage e;
-					if (cabine.intention() == '^'){
-						e = immeuble.étage(this.étage.numéro()+1);
+
+					if(étage.numéro()==7 ||étage.numéro()==-1){
+						echeancier.ajouter(new EvenementOuverturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
+					}else {
+						Etage e;
+						if (cabine.intention() == '^'){
+							e = immeuble.étage(this.étage.numéro()+1);
+						}
+						else{
+							e = immeuble.étage(this.étage.numéro()-1);
+						}
+						echeancier.ajouter(new EvenementPassageCabinePalier(date + tempsPourBougerLaCabineDUnEtage, e));
 					}
-					else{
-						e = immeuble.étage(this.étage.numéro()-1);
-					}
-					echeancier.ajouter(new EvenementPassageCabinePalier(date + tempsPourBougerLaCabineDUnEtage, e));
 				}
 		}
 	}
