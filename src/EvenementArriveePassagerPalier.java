@@ -36,13 +36,15 @@ public class EvenementArriveePassagerPalier extends Evenement {
 	    	if(c.cabineRemplie()){
 				étage.ajouter(p);
 				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
-			}else if(!modeParfait){
-	    		c.faireMonterPassager(p);
-	    		echeancier.decalerFPC();
-	    		echeancier.supprimerPAP(p);
-			}else {
-				étage.ajouter(p);
-				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
+			}else{
+	    		char n = c.faireMonterPassager(p);
+	    		if(n=='O'){
+					echeancier.decalerFPC();
+					echeancier.supprimerPAP(p);
+				}else{
+					étage.ajouter(p);
+					echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
+				}
 			}
 
 		}
