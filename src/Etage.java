@@ -134,6 +134,7 @@ public class Etage extends Global {
 				res++;
 			} else if (m == 'P') {
 				if(!modeParfait) {
+					pPrio = cabine.getPassager(0);
 					while (i < cabine.getTableauPassager().length) {
 						p = cabine.getPassager(i);
 						if(p != null && (cabine.intention() == p.sens())){
@@ -142,6 +143,7 @@ public class Etage extends Global {
 								pPrio = p;
 							}
 						}
+						System.out.println(p.numéroDeCréation);
 						i++;
 					}
 					cabine.changerIntention(pPrio.sens());
