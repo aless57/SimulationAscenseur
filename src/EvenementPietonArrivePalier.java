@@ -16,6 +16,17 @@ public class EvenementPietonArrivePalier extends Evenement {
     
     public void traiter(Immeuble immeuble, Echeancier echeancier) {
         étage.ajouterPietonEscalier(passager,echeancier);
+        if (passager.sens()=='v'){
+            Etage e = immeuble.étage(étage.numéro()+1);
+            if(e.sportifSurEtage(passager)){
+                e.supprimerSportif(passager);
+            }
+        }else{
+            Etage e = immeuble.étage(étage.numéro()-1);
+            if(e.sportifSurEtage(passager)){
+                e.supprimerSportif(passager);
+            }
+        }
         if(passager.numéroDestination()!=étage.numéro()){
             Etage e = passager.étageDépart();
             if (passager.sens() == 'v'){

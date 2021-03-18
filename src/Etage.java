@@ -174,14 +174,33 @@ public class Etage extends Global {
 
 	public void ajouterPietonEscalier(Passager p,Echeancier echeancier){
     	this.passagers.remove(p);
-    	this.pietons.add(p);
-    	echeancier.supprimerPAP(p);
+    	if(p.numéroDestination() == this.numéro){
+    		this.pietons.remove(p);
+		}else{
+			this.pietons.add(p);
+			echeancier.supprimerPAP(p);
+		}
 	}
 
     public boolean aDesPassagers(){
 	return (!passagers.isEmpty());
     }
 
+    public boolean sportifSurEtage(Passager p){
+    	boolean test = false;
+    	int i=0;
+    	while (i<pietons.size()){
+    		if(pietons.get(i)==p){
+    			test=true;
+			}
+    		i++;
+		}
+    	return test;
+	}
+
+	public void supprimerSportif(Passager p){
+    	pietons.remove(p);
+	}
     public int getNbPassager(){return passagers.size();}
 
 }
