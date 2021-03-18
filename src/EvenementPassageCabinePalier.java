@@ -34,7 +34,14 @@ public class EvenementPassageCabinePalier extends Evenement {
 				}
 				echeancier.ajouter(new EvenementPassageCabinePalier(date + tempsPourBougerLaCabineDUnEtage, e));
 			}else if(immeuble.passagerEnDessous(étage) && cabine.intention()=='v'){
-
+				Etage e;
+				if (cabine.intention() == '^'){
+					e = immeuble.étage(this.étage.numéro()+1);
+				}
+				else{
+					e = immeuble.étage(this.étage.numéro()-1);
+				}
+				echeancier.ajouter(new EvenementPassageCabinePalier(date + tempsPourBougerLaCabineDUnEtage, e));
 			}else {
 				echeancier.ajouter(new EvenementOuverturePorteCabine(date + tempsPourOuvrirOuFermerLesPortes));
 			}
