@@ -31,8 +31,8 @@ public class EvenementOuverturePorteCabine extends Evenement {
 				 if (((cabine.intention()=='^' && !immeuble.passagerAuDessus(étage)) || (cabine.intention()=='v' && !immeuble.passagerEnDessous(étage)))){
 					 cabine.changerIntention(cabine.getPassager(0).sens());
 				 }
-			 	ajoutEventFermeture = true;
 			 }
+			ajoutEventFermeture = true;
 		}
 		if (cabine.intention()=='v' && !cabine.cabineVide() && étage.aDesPassagersQuiMontent() && étage.getNbPassager()==1){
 			cabine.changerIntention('^');
