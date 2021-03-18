@@ -40,7 +40,6 @@ public class EvenementArriveePassagerPalier extends Evenement {
 	    		c.faireMonterPassager(p);
 	    		echeancier.decalerFPC();
 	    		echeancier.supprimerPAP(p);
-				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
 			}else {
 				étage.ajouter(p);
 				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
