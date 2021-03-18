@@ -42,9 +42,9 @@ public class EvenementArriveePassagerPalier extends Evenement {
 		}else if(c.porteOuverte) {
 				étage.ajouter(p);
 				if (!c.cabineVide()){
-					if (p.numéroDepart() < c.étage.numéro()) {
+					if (p.numéroDepart() < c.étage.numéro() && !immeuble.passagerAuDessus(étage)) {
 						c.changerIntention('v');
-					} else {
+					} else if(p.numéroDepart() > c.étage.numéro() && !immeuble.passagerEnDessous(étage)){
 						c.changerIntention('^');
 					}
 				}
