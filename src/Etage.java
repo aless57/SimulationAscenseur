@@ -173,6 +173,7 @@ public class Etage extends Global {
 	}
 
 	public void ajouterPietonEscalier(Passager p,Echeancier echeancier){
+    	this.passagers.remove(p);
     	this.pietons.add(p);
     	echeancier.supprimerPAP(p);
 	}
