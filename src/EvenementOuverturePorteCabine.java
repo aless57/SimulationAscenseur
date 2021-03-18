@@ -41,9 +41,9 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		}
 		int nbPersonneQuiEntrent = 0;
 		if (étage.aDesPassagers()){
-			if(étage.aDesPassagersQuiMontent() && cabine.intention()=='^'){
+			if(étage.aDesPassagersQuiDescendent() && cabine.intention()=='^' && !immeuble.passagerAuDessus(étage)){
 				nbPersonneQuiEntrent=étage.entrerPassagerCabine(cabine,echeancier);
-			} else if (étage.aDesPassagersQuiDescendent() && cabine.intention() == 'v') {
+			} else if (étage.aDesPassagersQuiMontent() && cabine.intention() == 'v' && !immeuble.passagerEnDessous(étage)) {
 				nbPersonneQuiEntrent=étage.entrerPassagerCabine(cabine,echeancier);
 			}
 		}
