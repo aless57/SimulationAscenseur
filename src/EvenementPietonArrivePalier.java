@@ -28,7 +28,7 @@ public class EvenementPietonArrivePalier extends Evenement {
             }
         }
         if(passager.numéroDestination()!=étage.numéro()){
-            Etage e = passager.étageDépart();
+            Etage e = étage;
             if (passager.sens() == 'v'){
                 echeancier.ajouter(new EvenementPietonArrivePalier(date + Global.tempsPourMonterOuDescendreUnEtageAPieds,immeuble.étage(e.numéro()+-1),passager));
             }else{
