@@ -17,12 +17,10 @@ public class EvenementFermeturePorteCabine extends Evenement {
     public void traiter(Immeuble immeuble, Echeancier echeancier) {
         Cabine cabine = immeuble.cabine;
         Etage e = immeuble.étage(cabine.étage.numéro());
-        if (cabine.étage.numéro() != 7 && cabine.étage.numéro() != -1){
-            if (cabine.intention() == 'v'){
-                e = immeuble.étage(cabine.étage.numéro()-1);
-            }else{
-                e = immeuble.étage(cabine.étage.numéro()+1);
-            }
+        if (cabine.intention() == 'v' && cabine.étage.numéro()!=-1){
+            e = immeuble.étage(cabine.étage.numéro()-1);
+        }else if(cabine.intention() =='^' && cabine.étage.numéro() != 7){
+            e = immeuble.étage(cabine.étage.numéro()+1);
         }
         echeancier.ajouter(new EvenementPassageCabinePalier(date + tempsPourBougerLaCabineDUnEtage, e));
         cabine.porteOuverte = false;
