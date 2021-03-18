@@ -36,8 +36,11 @@ public class EvenementArriveePassagerPalier extends Evenement {
 	    	if(c.cabineRemplie()){
 				étage.ajouter(p);
 				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
-			}else{
+			}else if(p.sens() == c.intention()){
 	    		c.faireMonterPassager(p);
+				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
+			}else {
+				étage.ajouter(p);
 				echeancier.ajouter(new EvenementPietonArrivePalier(date + délaiDePatienceAvantSportif, p.étageDépart(), p));
 			}
 
