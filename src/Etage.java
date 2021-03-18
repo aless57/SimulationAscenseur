@@ -134,7 +134,6 @@ public class Etage extends Global {
 				res++;
 			} else if (m == 'P') {
 				if (((cabine.intention()=='^' && !immeuble.passagerAuDessus(this)) || (cabine.intention()=='v' && !immeuble.passagerEnDessous(this)))){
-					System.out.println("A");
 					if(!modeParfait) {
 						pPrio = cabine.getPassager(0);
 						while (i < cabine.getTableauPassager().length) {
@@ -158,7 +157,6 @@ public class Etage extends Global {
 		}
 		i=0;
 		if (infernal && ((cabine.intention()=='^' && !immeuble.passagerAuDessus(this)) || (cabine.intention()=='v' && !immeuble.passagerEnDessous(this)))){
-			System.out.println("A");
 			if(!modeParfait){
 				while (i < cabine.getTableauPassager().length){
 					Passager p = cabine.getPassager(i);
