@@ -136,7 +136,7 @@ public class Etage extends Global {
 				if(!modeParfait) {
 					while (i < cabine.getTableauPassager().length) {
 						p = cabine.getPassager(i);
-						if(p != null){
+						if(p != null && (cabine.intention() == p.sens())){
 							if (Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro)) <= test) {
 								test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
 								pPrio = p;
@@ -157,7 +157,7 @@ public class Etage extends Global {
 			if(!modeParfait){
 				while (i < cabine.getTableauPassager().length){
 					Passager p = cabine.getPassager(i);
-					if (p != null){
+					if (p != null && (cabine.intention() == p.sens())){
 						if(Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro))<=test){
 							test = Math.abs(cabine.étage.numéro - Math.abs(p.étageDestination().numéro));
 							pPrio = p;
