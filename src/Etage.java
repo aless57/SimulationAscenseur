@@ -124,7 +124,6 @@ public class Etage extends Global {
 		int res = 0;
 		int i = 0;
 		char m = 'O';
-
 		while (i < this.passagers.size()) {
 			Passager p = passagers.get(i);
 			m = cabine.faireMonterPassager(p);
