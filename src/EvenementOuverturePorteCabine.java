@@ -41,12 +41,11 @@ public class EvenementOuverturePorteCabine extends Evenement {
 		}
 		int nbPersonneQuiEntrent = 0;
 		if (étage.aDesPassagers()){
-			if(modeParfait || (cabine.intention()=='^' && !immeuble.passagerAuDessus(étage)) && !cabine.cabineVide()){
+			if(étage.aDesPassagersQuiMontent() && cabine.intention()=='^'){
 				nbPersonneQuiEntrent=étage.entrerPassagerCabine(cabine,echeancier);
-			}else if(modeParfait && (cabine.intention()=='v' || cabine.intention()=='-'  && !immeuble.passagerEnDessous(étage) && !cabine.cabineVide())){
+			} else if (étage.aDesPassagersQuiDescendent() && cabine.intention() == 'v') {
 				nbPersonneQuiEntrent=étage.entrerPassagerCabine(cabine,echeancier);
 			}
-
 		}
 
 		if (nbPersonneQuiEntrent > 0){
